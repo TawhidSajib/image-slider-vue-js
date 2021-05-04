@@ -1,15 +1,11 @@
 <template>
   <div class="container">
     <div class="item">
-      <img class="image" :src="firstImage" />
-      <button class="left-slide" @click="prev" :disabled="index === 0">
+      <img class="image" :src="currentImg" />
+      <button class="left-slide" @click="prev">
         {{ prevIcon }}
       </button>
-      <button
-        class="right-slide"
-        @click="next"
-        :disabled="index === this.images.length - 1"
-      >
+      <button class="right-slide" @click="next">
         {{ nextIcon }}
       </button>
     </div>
@@ -25,19 +21,25 @@ export default {
     return {
       prevIcon: "<",
       nextIcon: ">",
-      firstImage: slider1,
       images: [slider1, slider2, slider3, slider4],
       index: 0,
     };
   },
+  computed: {
+    currentImg() {
+      return this.images[Math.abs(this.index) % this.images.length];
+    },
+  },
   methods: {
     next() {
       this.index++;
-      this.firstImage = this.images[this.index];
     },
     prev() {
-      this.index--;
-      this.firstImage = this.images[this.index];
+      if (this.index === 0) {
+        this.index = this.images.length - 1;
+      } else {
+        this.index--;
+      }
     },
   },
 };
@@ -50,17 +52,18 @@ export default {
 body {
   background-color: grey;
 }
-.container {
-  max-width: 1170px;
-  margin: 0 auto;
-  text-align: center;
-}
 .item {
   position: relative;
   border: 10px solid blue;
+  overflow: hidden;
+  width: 700px;
+  height: 400px;
+  margin: 0 auto;
+  top: 60px;
 }
 .image {
-  max-width: 100%;
+  width: 700px;
+  height: 400px;
 }
 .left-slide,
 .right-slide {
