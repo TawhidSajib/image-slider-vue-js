@@ -1,13 +1,15 @@
+
 <template>
   <div class="container">
     <div class="item">
-      <img class="image" :src="currentImg" />
+      <img class="image" :src="currentImg.image" />
       <button class="left-slide" @click="prev">
         {{ prevIcon }}
       </button>
       <button class="right-slide" @click="next">
         {{ nextIcon }}
       </button>
+      <p class="imageTitle">{{ currentImg.title }}</p>
     </div>
   </div>
 </template>
@@ -21,7 +23,12 @@ export default {
     return {
       prevIcon: "<",
       nextIcon: ">",
-      images: [slider1, slider2, slider3, slider4],
+      images: [
+        { image: slider1, title: "Tanguar Haor" },
+        { image: slider2, title: "Bogalake" },
+        { image: slider3, title: "Saint Martin" },
+        { image: slider4, title: "Nafakhum" },
+      ],
       index: 0,
     };
   },
@@ -81,10 +88,12 @@ body {
   line-height: 40px;
 }
 .left-slide:hover {
+  box-shadow: 0px 0px 10px black;
   background-color: blue;
   color: white;
 }
 .right-slide:hover {
+  box-shadow: 0px 0px 10px black;
   background-color: blue;
   color: white;
 }
@@ -93,5 +102,16 @@ body {
 }
 .container .right-slide {
   right: 30px;
+}
+.imageTitle {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 28px;
+  letter-spacing: 4px;
+  color: white;
+  font-weight: bold;
 }
 </style>
