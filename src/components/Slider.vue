@@ -3,12 +3,12 @@
   <div class="container">
     <div class="item">
       <img class="image" :src="currentImg.image" />
-      <button class="left-slide" @click="prev">
+      <div class="left-slide" @click="prev">
         {{ prevIcon }}
-      </button>
-      <button class="right-slide" @click="next">
+      </div>
+      <div class="right-slide" @click="next">
         {{ nextIcon }}
-      </button>
+      </div>
       <p class="imageTitle">{{ currentImg.title }}</p>
     </div>
   </div>
@@ -51,67 +51,3 @@ export default {
   },
 };
 </script>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-}
-body {
-  background-color: grey;
-}
-.item {
-  position: relative;
-  border: 10px solid blue;
-  overflow: hidden;
-  width: 700px;
-  height: 400px;
-  margin: 0 auto;
-  top: 60px;
-}
-.image {
-  width: 700px;
-  height: 400px;
-}
-.left-slide,
-.right-slide {
-  position: absolute;
-  height: 40px;
-  width: 40px;
-  background-color: #444444;
-  border-radius: 50%;
-  color: #ffffff;
-  font-size: 20px;
-  top: 50%;
-  cursor: pointer;
-  margin-top: -20px;
-  text-align: center;
-  line-height: 40px;
-}
-.left-slide:hover {
-  box-shadow: 0px 0px 10px black;
-  background-color: blue;
-  color: white;
-}
-.right-slide:hover {
-  box-shadow: 0px 0px 10px black;
-  background-color: blue;
-  color: white;
-}
-.container .left-slide {
-  left: 30px;
-}
-.container .right-slide {
-  right: 30px;
-}
-.imageTitle {
-  position: absolute;
-  bottom: 10%;
-  width: 100%;
-  text-align: center;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 28px;
-  letter-spacing: 4px;
-  color: white;
-  font-weight: bold;
-}
-</style>
