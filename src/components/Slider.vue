@@ -14,23 +14,18 @@
   </div>
 </template>
 <script>
-import slider1 from "@/assets/images/slider1.jpg";
-import slider2 from "@/assets/images/slider2.jpg";
-import slider3 from "@/assets/images/slider3.jpg";
-import slider4 from "@/assets/images/slider4.jpg";
 export default {
   data() {
     return {
       prevIcon: "<",
       nextIcon: ">",
-      images: [
-        { image: slider1, title: "Tanguar Haor" },
-        { image: slider2, title: "Bogalake" },
-        { image: slider3, title: "Saint Martin" },
-        { image: slider4, title: "Nafakhum" },
-      ],
       index: 0,
     };
+  },
+  props: {
+    images: {
+      type: Array,
+    },
   },
   computed: {
     currentImg() {
