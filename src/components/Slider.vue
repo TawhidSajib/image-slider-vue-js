@@ -3,13 +3,15 @@
   <div class="container">
     <div class="item">
       <img class="image" :src="currentImg.image" />
-      <div class="left-slide" @click="prev">
-        {{ prevIcon }}
+      <div class="imageItem">
+        <slot :imgData="currentImg"></slot>
+        <div class="left-slide" @click="prev">
+          {{ prevIcon }}
+        </div>
+        <div class="right-slide" @click="next">
+          {{ nextIcon }}
+        </div>
       </div>
-      <div class="right-slide" @click="next">
-        {{ nextIcon }}
-      </div>
-      <p class="imageTitle">{{ currentImg.title }}</p>
     </div>
   </div>
 </template>

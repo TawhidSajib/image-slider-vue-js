@@ -1,6 +1,21 @@
 <template>
   <div id="app">
-    <Slider :images="images" />
+    <Slider :images="images">
+      <template scope="{imgData}">
+        <div
+          style="
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            height: 100%;
+          "
+        >
+          <div>
+            <h1 class="imageTitle">{{ imgData.title }}</h1>
+          </div>
+        </div>
+      </template>
+    </Slider>
   </div>
 </template>
 
@@ -29,5 +44,9 @@ export default {
 </script>
 <style>
 @import "./assets/styles/style.css";
+.imageTitle {
+  color: white;
+  margin-bottom: 30px;
+}
 </style>
 
