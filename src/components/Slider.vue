@@ -5,10 +5,10 @@
       <img class="image" :src="currentImg.image" />
       <div class="imageItem">
         <slot :imgData="currentImg"></slot>
-        <div class="left-slide" @click="prev">
+        <div class="left-slide" v-if="showArrow" @click="prev">
           {{ prevIcon }}
         </div>
-        <div class="right-slide" @click="next">
+        <div class="right-slide" v-if="showArrow" @click="next">
           {{ nextIcon }}
         </div>
       </div>
@@ -22,12 +22,26 @@ export default {
       prevIcon: "<",
       nextIcon: ">",
       index: 0,
+      timer: null,
     };
   },
   props: {
     images: {
       type: Array,
     },
+    autoPlay: {
+      type: Boolean,
+      default: false,
+    },
+    showArrow: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  mounted() {
+    if (this.autoPlay) {
+      this.startSlide();
+    }
   },
   computed: {
     currentImg() {
@@ -35,6 +49,10 @@ export default {
     },
   },
   methods: {
+    startSlide() {
+      this.playing = true;
+      this.timer = setInterval(this.next, 4000);
+    },
     next() {
       this.index++;
     },
